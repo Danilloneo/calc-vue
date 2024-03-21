@@ -32,9 +32,6 @@ const calcularResultado = () => {
           <input type="text" v-model="estado.segundoNumero" placeholder="Digite o segundo valor" @input="calcularResultado" required>
           </div>
           <div class="col-md-2">
-          <p><b>Selecione a Operação:</b></p> 
-          </div>
-          <div class="col-md-2">
           <select v-model="estado.operacaoMatematica" @change="calcularResultado">
           <option value="soma">+</option>
           <option value="subtracao">-</option>
@@ -47,8 +44,9 @@ const calcularResultado = () => {
   </div><!--container-->
   <div class="container mt-5">
   <main>
-      <span v-if="estado.resultado > 0" class="sucess wd-p">Resultado : {{ estado.resultado }}</span>
-      <span v-else class="error wd-p">Favor digitar um número nos campos!</span>
+      <span v-if="!estado.operacaoMatematica">Para começar digite 2 números e selecione a operação na caixa ao lado [ v]</span>
+      <span v-else-if="(estado.resultado >= 0 || estado.resultado < 0)" class="sucess wd-p">Resultado : {{ estado.resultado }}</span>
+      <span v-else="estado.resultado = 'string'" class="error wd-p">Favor digitar um número nos campos e selecione uma operação na caixa ao lado [ ]!</span>
   </main>
   </div>
 </template>
